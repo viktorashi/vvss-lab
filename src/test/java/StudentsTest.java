@@ -24,8 +24,8 @@ class StudentsTest {
 
     @Test
     void testAddValidStudent() {
-        String id = "1";
-        String nume = "Bogdan";
+        String id = "10";
+        String nume = "Viki";
         int grupa = 832;
         int result = service.saveStudent(id, nume, grupa);
         assertEquals(0, result, "Should return 0 for successful student addition");
