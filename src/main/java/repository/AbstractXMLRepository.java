@@ -14,6 +14,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public abstract class AbstractXMLRepository<ID, E extends HasID<ID>> extends AbstractCRUDRepository<ID, E> {
@@ -50,8 +51,27 @@ public abstract class AbstractXMLRepository<ID, E extends HasID<ID>> extends Abs
         }
         catch(SAXException s) {
             s.printStackTrace();
-        }
-        catch(IOException i) {
+
+        } catch(FileNotFoundException fnotfound){
+            fnotfound.printStackTrace();
+//            create the file
+            System.out.println("N-AM GASIT FISIERUU da-i ok ca il facem noi");
+            try {
+                Document XMLdocument = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
+                Element root = XMLdocument.createElement("Entitati");
+                XMLdocument.appendChild(root);
+                Transformer XMLtransformer = TransformerFactory.newInstance().newTransformer();
+                XMLtransformer.setOutputProperty(OutputKeys.INDENT, "yes");
+                XMLtransformer.transform(new DOMSource(XMLdocument), new StreamResult(XMLfilename));
+            } catch(ParserConfigurationException pce) {
+                pce.printStackTrace();
+            } catch(TransformerConfigurationException tce) {
+                tce.printStackTrace();
+            } catch(TransformerException te) {
+                te.printStackTrace();
+            }
+
+        } catch(IOException i) {
             i.printStackTrace();
         }
     }
@@ -87,6 +107,7 @@ public abstract class AbstractXMLRepository<ID, E extends HasID<ID>> extends Abs
     @Override
     public E save(E entity) throws ValidationException {
         E result = super.save(entity);
+//        da null cand nu e deja in map, am zis ca e invers oops
         if (result == null) {
             writeToXmlFile();
         }

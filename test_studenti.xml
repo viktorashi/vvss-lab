@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Entitati>
-    <student ID="1">
-        <Nume>Viki</Nume>
-        <Grupa>832</Grupa>
+    <student ID="hahaha">
+        <Nume>markel</Nume>
+        <Grupa>111</Grupa>
+    </student>
+    <student ID="laalllall">
+        <Nume>markel</Nume>
+        <Grupa>937</Grupa>
     </student>
     <student ID="lmao">
         <Nume>markel</Nume>
