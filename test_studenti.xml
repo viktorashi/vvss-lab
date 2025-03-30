@@ -4,6 +4,10 @@
         <Nume>Viki</Nume>
         <Grupa>832</Grupa>
     </student>
+    <student ID="lmao">
+        <Nume>markel</Nume>
+        <Grupa>831</Grupa>
+    </student>
     <student ID="10">
         <Nume>Viki</Nume>
         <Grupa>832</Grupa>

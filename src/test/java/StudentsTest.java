@@ -16,7 +16,7 @@ class StudentsTest {
 
     @BeforeEach
     void setUp() {
-        Validator<Student> studentValidator = new StudentValidator();
+        StudentValidator studentValidator = new StudentValidator();
         studentRepo = new StudentXMLRepository(studentValidator, "test_studenti.xml");
         service = new Service(studentRepo, null, null);
     }
@@ -45,4 +45,17 @@ class StudentsTest {
         Student savedStudent = studentRepo.findOne(id);
         assertNull(savedStudent, "Invalid student should not exist in repository");
     }
-} 
+    @Test
+    void testWeirdStringStudentID(){
+        String id = "lmao";
+        String name = "markel";
+        int grupa = 831;
+        int result = service.saveStudent(id, name, grupa);
+        assertEquals(0, result, "ar trb sa fie ok dar ciudatel");
+        Student savedStudent = studentRepo.findOne(id);
+        assertNotNull(savedStudent, "Student should exist in repository");
+        assertEquals(id, savedStudent.getID(), "Student ID should match");
+        assertEquals(name, savedStudent.getNume(), "Student name should match");
+        assertEquals(grupa, savedStudent.getGrupa(), "Student group should match");
+    }
+}
