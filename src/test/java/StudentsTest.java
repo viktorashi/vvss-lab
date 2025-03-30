@@ -13,11 +13,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class StudentsTest {
     private Service service;
     private StudentXMLRepository studentRepo;
-    private Validator<Student> studentValidator;
 
     @BeforeEach
     void setUp() {
-        studentValidator = new StudentValidator();
+        Validator<Student> studentValidator = new StudentValidator();
         studentRepo = new StudentXMLRepository(studentValidator, "test_studenti.xml");
         service = new Service(studentRepo, null, null);
     }
