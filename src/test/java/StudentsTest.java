@@ -112,7 +112,7 @@ class StudentsTest {
         String name = "markel";
         int grupa = 110;
         int result = service.saveStudent(id, name, grupa);
-        assertEquals(1, result, "ar trb sa fie ok dar ciudatel");
+        assertEquals(1, result, "nu-l pune");
         Student savedStudent = studentRepo.findOne(id);
         assertNull(savedStudent, "Invalid student should not exist in repository");
     }
@@ -123,7 +123,7 @@ class StudentsTest {
         String name = "markel";
         int grupa = 938;
         int result = service.saveStudent(id, name, grupa);
-        assertEquals(1, result, "ar trb sa fie ok dar ciudatel");
+        assertEquals(1, result, "nu-l pune");
         Student savedStudent = studentRepo.findOne(id);
         assertNull(savedStudent, "Invalid student should not exist in repository");
     }
@@ -134,7 +134,7 @@ class StudentsTest {
         String name = "markel";
         int grupa = 111;
         int result = service.saveStudent(id, name, grupa);
-        assertEquals(0, result, "ar trb sa fie ok dar ciudatel");
+        assertEquals(0, result, "nu-l pune");
         Student savedStudent = studentRepo.findOne(id);
         assertNotNull(savedStudent, "Student should exist in repository");
         assertEquals(id, savedStudent.getID(), "Student ID should match");
@@ -148,7 +148,7 @@ class StudentsTest {
         String name = "markel";
         int grupa = 937;
         int result = service.saveStudent(id, name, grupa);
-        assertEquals(0, result, "ar trb sa fie ok dar ciudatel");
+        assertEquals(0, result, "nu-l pune");
         Student savedStudent = studentRepo.findOne(id);
         assertNotNull(savedStudent, "Student should exist in repository");
         assertEquals(id, savedStudent.getID(), "Student ID should match");
