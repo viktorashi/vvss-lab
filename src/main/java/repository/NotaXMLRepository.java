@@ -47,7 +47,7 @@ public class NotaXMLRepository extends AbstractXMLRepository<Pair<String, String
         StudentValidator sval = new StudentValidator();
         AssignmentValidator tval = new AssignmentValidator();
         StudentFileRepository srepo = new StudentFileRepository(sval, "studenti.txt");
-        TemaFileRepository trepo = new TemaFileRepository(tval, "teme.txt");
+        AssignmentFileRepository trepo = new AssignmentFileRepository(tval, "teme.txt");
 
         Student student = srepo.findOne(idStudent);
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(student.getNume() + ".txt", false))) {

@@ -14,10 +14,10 @@ public class AssignmentValidator implements Validator<Assignment> {
             throw new ValidationException("Deadlineu inainte de startline!! \n");
         }
         if (assignment.getDeadline() < 1 || assignment.getDeadline() > 14) {
-            throw new ValidationException("Deadline invalid! \n");
+            throw new ValidationException("Deadline invalid!  trebuie intre [1-14] \n");
         }
         if (assignment.getStartline() < 1 || assignment.getStartline() > 14) {
-            throw new ValidationException("Data de primire invalida! \n");
+            throw new ValidationException("Data de primire invalida! trebuie intre [1-14] \n");
         }
     }
 }

@@ -7,9 +7,9 @@ import validation.Validator;
 import java.io.*;
 import java.util.stream.Collectors;
 
-public class TemaFileRepository extends AbstractFileRepository<String, Assignment> {
+public class AssignmentFileRepository extends AbstractFileRepository<String, Assignment> {
 
-    public TemaFileRepository(Validator<Assignment> validator, String filename) {
+    public AssignmentFileRepository(Validator<Assignment> validator, String filename) {
         super(validator, filename);
         loadFromFile();
     }
