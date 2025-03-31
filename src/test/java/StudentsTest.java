@@ -3,23 +3,19 @@ package test;
 import domain.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import repository.StudentXMLRepository;
-import service.Service;
+import repository.StudentRepository;
 import validation.StudentValidator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentsTest {
-    private Service service;
-    private StudentXMLRepository studentRepo;
+    private StudentRepository studentRepo;
 
     @BeforeEach
-    void setUp() {
-        String filename = "test_studenti.xml";
-        StudentValidator studentValidator = new StudentValidator();
-        studentRepo = new StudentXMLRepository(studentValidator, filename);
-        service = new Service(studentRepo, null, null);
+    void testSetUp() {
 
+        StudentValidator studentValidator = new StudentValidator();
+        studentRepo = new StudentRepository(studentValidator);
 
 //        //        goleste fisieru ala inaint de fiecare test ca sa fie curat
 //        mde- nu prea merge cu asta tbh
@@ -39,8 +35,9 @@ class StudentsTest {
         String id = "10";
         String nume = "Viki";
         int grupa = 832;
-        int result = service.saveStudent(id, nume, grupa);
-        assertEquals(0, result, "Should return 0 for successful student addition");
+        Student student = new Student(id, nume, grupa);
+        Student result = studentRepo.save(student);
+        assertNotNull(result, "Should return 0 for successful student addition");
         Student savedStudent = studentRepo.findOne(id);
         assertNotNull(savedStudent, "Student should exist in repository");
         assertEquals(id, savedStudent.getID(), "Student ID should match");
@@ -53,8 +50,9 @@ class StudentsTest {
         String id = "";
         String nume = "Andrei";
         int grupa = 832;
-        int result = service.saveStudent(id, nume, grupa);
-        assertEquals(1, result, "Should return 1 for invalid student");
+        Student student = new Student(id, nume, grupa);
+        Student result = studentRepo.save(student);
+        assertNull(result, "Should return 1 for invalid student");
         Student savedStudent = studentRepo.findOne(id);
         assertNull(savedStudent, "Invalid student should not exist in repository");
     }
@@ -64,8 +62,9 @@ class StudentsTest {
         String id = "lmao";
         String name = "markel";
         int grupa = 831;
-        int result = service.saveStudent(id, name, grupa);
-        assertEquals(0, result, "ar trb sa fie ok dar ciudatel");
+        Student student = new Student(id, name, grupa);
+        Student result = studentRepo.save(student);
+        assertNotNull(result, "ar trb sa fie ok dar ciudatel");
         Student savedStudent = studentRepo.findOne(id);
         assertNotNull(savedStudent, "Student should exist in repository");
         assertEquals(id, savedStudent.getID(), "Student ID should match");
@@ -76,10 +75,11 @@ class StudentsTest {
     @Test
     void testInvalidName() {
         String id = "100";
-        String nume = "";
+        String name = "";
         int grupa = 832;
-        int result = service.saveStudent(id, nume, grupa);
-        assertEquals(1, result, "Should return 1 for invalid student");
+        Student student = new Student(id, name, grupa);
+        Student result = studentRepo.save(student);
+        assertNull(result, "Should return 1 for invalid student");
         Student savedStudent = studentRepo.findOne(id);
         assertNull(savedStudent, "Invalid student should not exist in repository");
     }
@@ -87,10 +87,11 @@ class StudentsTest {
     @Test
     void testGrupaSmall() {
         String id = "101";
-        String nume = "mihaita";
+        String name = "mihaita";
         int grupa = 0;
-        int result = service.saveStudent(id, nume, grupa);
-        assertEquals(1, result, "Should return 1 for invalid student");
+        Student student = new Student(id, name, grupa);
+        Student result = studentRepo.save(student);
+        assertNull(result, "Should return 1 for invalid student");
         Student savedStudent = studentRepo.findOne(id);
         assertNull(savedStudent, "Invalid student should not exist in repository");
     }
@@ -98,10 +99,11 @@ class StudentsTest {
     @Test
     void testGrupaBig() {
         String id = "102";
-        String nume = "mihaita";
+        String name = "mihaita";
         int grupa = 1000;
-        int result = service.saveStudent(id, nume, grupa);
-        assertEquals(1, result, "Should return 1 for invalid student");
+        Student student = new Student(id, name, grupa);
+        Student result = studentRepo.save(student);
+        assertNull(result, "Should return 1 for invalid student");
         Student savedStudent = studentRepo.findOne(id);
         assertNull(savedStudent, "Invalid student should not exist in repository");
     }
@@ -111,8 +113,9 @@ class StudentsTest {
         String id = "301";
         String name = "markel";
         int grupa = 110;
-        int result = service.saveStudent(id, name, grupa);
-        assertEquals(1, result, "nu-l pune");
+        Student student = new Student(id, name, grupa);
+        Student result = studentRepo.save(student);
+        assertNull(result, "nu-l pune");
         Student savedStudent = studentRepo.findOne(id);
         assertNull(savedStudent, "Invalid student should not exist in repository");
     }
@@ -122,8 +125,9 @@ class StudentsTest {
         String id = "400";
         String name = "markel";
         int grupa = 938;
-        int result = service.saveStudent(id, name, grupa);
-        assertEquals(1, result, "nu-l pune");
+        Student student = new Student(id, name, grupa);
+        Student result = studentRepo.save(student);
+        assertNull(result, "nu-l pune");
         Student savedStudent = studentRepo.findOne(id);
         assertNull(savedStudent, "Invalid student should not exist in repository");
     }
@@ -133,8 +137,9 @@ class StudentsTest {
         String id = "hahaha";
         String name = "markel";
         int grupa = 111;
-        int result = service.saveStudent(id, name, grupa);
-        assertEquals(0, result, "nu-l pune");
+        Student student = new Student(id, name, grupa);
+        Student result = studentRepo.save(student);
+        assertNotNull(result, "ar trebui sa-l puna");
         Student savedStudent = studentRepo.findOne(id);
         assertNotNull(savedStudent, "Student should exist in repository");
         assertEquals(id, savedStudent.getID(), "Student ID should match");
@@ -147,8 +152,9 @@ class StudentsTest {
         String id = "laalllall";
         String name = "markel";
         int grupa = 937;
-        int result = service.saveStudent(id, name, grupa);
-        assertEquals(0, result, "nu-l pune");
+        Student student = new Student(id, name, grupa);
+        Student result = studentRepo.save(student);
+        assertNotNull(result, "nu-l pune");
         Student savedStudent = studentRepo.findOne(id);
         assertNotNull(savedStudent, "Student should exist in repository");
         assertEquals(id, savedStudent.getID(), "Student ID should match");
@@ -164,12 +170,11 @@ class StudentsTest {
             String id = "a".repeat(length_limit);
             String name = "markel";
             int grupa = 831;
-            int result = service.saveStudent(id, name, grupa);
-        }
-        catch(OutOfMemoryError err) {
+            Student student = new Student(id, name, grupa);
+            Student result = studentRepo.save(student);
+        } catch (OutOfMemoryError err) {
             assertTrue(true, "bun, da n-avea cum sa aiba loc");
-        }
-        catch(Exception err) {
+        } catch (Exception err) {
             fail("Cumva a dat doar exception da trebuia sa dea eroare din aia care nus e catchiuieste");
         }
     }
@@ -181,12 +186,11 @@ class StudentsTest {
             String id = "10sute";
             String name = "a".repeat(length_limit);
             int grupa = 831;
-            int result = service.saveStudent(id, name, grupa);
-        }
-        catch(OutOfMemoryError err) {
+            Student student = new Student(id, name, grupa);
+            Student result = studentRepo.save(student);
+        } catch (OutOfMemoryError err) {
             assertTrue(true, "bun, da n-avea cum sa aiba loc");
-        }
-        catch(Exception err) {
+        } catch (Exception err) {
             fail("Cumva a dat doar exception da trebuia sa dea eroare din aia care nus e catchiuieste");
         }
     }
