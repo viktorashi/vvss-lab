@@ -1,10 +1,10 @@
 package repository;
 
-import domain.Tema;
+import domain.Assignment;
 import validation.Validator;
 
-public class TemaRepository extends AbstractCRUDRepository<String, Tema> {
-    public TemaRepository(Validator<Tema> validator) {
+public class TemaRepository extends AbstractCRUDRepository<String, Assignment> {
+    public TemaRepository(Validator<Assignment> validator) {
         super(validator);
     }
 }

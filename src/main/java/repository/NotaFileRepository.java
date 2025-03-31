@@ -59,16 +59,16 @@ public class NotaFileRepository extends AbstractFileRepository<Pair<String, Stri
 //    protected void createFile(Nota notaObj) {
 //        String idStudent = notaObj.getID().getObject1();
 //        StudentValidator sval = new StudentValidator();
-//        TemaValidator tval = new TemaValidator();
+//        AssignmentValidator tval = new AssignmentValidator();
 //        StudentXMLRepository srepo = new StudentXMLRepository(sval, "studenti.txt");
-//        TemaXMLRepository trepo = new TemaXMLRepository(tval, "teme.txt");
+//        AssignmentXMLRepository trepo = new AssignmentXMLRepository(tval, "teme.txt");
 //
 //        Student student = srepo.findOne(idStudent);
 //        try (BufferedWriter bw = new BufferedWriter(new FileWriter(student.getNume() + ".txt", false))) {
 //            super.findAll().forEach(nota -> {
 //                if (nota.getID().getObject1().equals(idStudent)) {
 //                    try {
-//                        bw.write("Tema: " + nota.getID().getObject2() + "\n");
+//                        bw.write("Assignment: " + nota.getID().getObject2() + "\n");
 //                        bw.write("Nota: " + nota.getNota() + "\n");
 //                        bw.write("Predata in saptamana: " + nota.getSaptamanaPredare() + "\n");
 //                        bw.write("Deadline: " + trepo.findOne(nota.getID().getObject2()).getDeadline() + "\n");

@@ -2,7 +2,7 @@ package console;
 
 import domain.Nota;
 import domain.Student;
-import domain.Tema;
+import domain.Assignment;
 import service.Service;
 
 import java.util.Scanner;
@@ -40,8 +40,8 @@ public class UI {
     }
 
     public void uiPrintAllTeme() {
-        for(Tema tema : service.findAllTeme()) {
-            System.out.println(tema);
+        for(Assignment assignment : service.findAllTeme()) {
+            System.out.println(assignment);
         }
     }
 
@@ -87,10 +87,10 @@ public class UI {
         int startline = scanner.nextInt();
 
         if (service.saveTema(id, descriere, deadline, startline) != 0) {
-            System.out.println("Tema adaugata cu succes! \n");
+            System.out.println("Assignment adaugata cu succes! \n");
         }
         else {
-            System.out.println("Tema existenta sau invalida! \n");
+            System.out.println("Assignment existenta sau invalida! \n");
         }
     }
 
@@ -148,10 +148,10 @@ public class UI {
         String id = scanner.nextLine();
 
         if (service.deleteTema(id) != 0) {
-            System.out.println("Tema stearsa cu succes! \n");
+            System.out.println("Assignment stearsa cu succes! \n");
         }
         else {
-            System.out.println("Tema nu exista! \n");
+            System.out.println("Assignment nu exista! \n");
         }
     }
 
@@ -188,7 +188,7 @@ public class UI {
             System.out.println("Deadline extins cu succes! \n");
         }
         else {
-            System.out.println("Tema nu exista! \n");
+            System.out.println("Assignment nu exista! \n");
         }
     }
 

@@ -1,24 +1,21 @@
 import console.UI;
-import domain.Nota;
-import domain.Student;
-import domain.Tema;
+import repository.AssignmentXMLRepository;
 import repository.NotaXMLRepository;
 import repository.StudentXMLRepository;
-import repository.TemaXMLRepository;
 import service.Service;
 import validation.NotaValidator;
 import validation.StudentValidator;
-import validation.TemaValidator;
-import validation.Validator;
+import validation.AssignmentValidator;
 
 public class Main {
     public static void main(String[] args) {
-        Validator<Student> studentValidator = new StudentValidator();
-        Validator<Tema> temaValidator = new TemaValidator();
-        Validator<Nota> notaValidator = new NotaValidator();
+
+        NotaValidator notaValidator = new NotaValidator();
+        AssignmentValidator temaValidator = new AssignmentValidator();
+        StudentValidator studentValidator = new StudentValidator();
 
         StudentXMLRepository fileRepository1 = new StudentXMLRepository(studentValidator, "studenti.xml");
-        TemaXMLRepository fileRepository2 = new TemaXMLRepository(temaValidator, "teme.xml");
+        AssignmentXMLRepository fileRepository2 = new AssignmentXMLRepository(temaValidator, "teme.xml");
         NotaXMLRepository fileRepository3 = new NotaXMLRepository(notaValidator, "note.xml");
 
         Service service = new Service(fileRepository1, fileRepository2, fileRepository3);
