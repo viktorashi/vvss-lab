@@ -1,0 +1,148 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Nota</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">domain</a>
+</div>
+
+<h1>Coverage Summary for Class: Nota (domain)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Nota</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/16)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package domain;
+&nbsp;
+&nbsp;public class Nota implements HasID&lt;Pair&lt;String, String&gt;&gt; {
+&nbsp;    Pair&lt;String, String&gt; idNota;
+&nbsp;    private double nota;
+&nbsp;    private int saptamanaPredare;
+&nbsp;    private String feedback;
+&nbsp;
+<b class="nc">&nbsp;    public Nota(Pair&lt;String, String&gt; idNota, double nota, int saptamanaPredare, String feedback) {</b>
+<b class="nc">&nbsp;        this.idNota = idNota;</b>
+<b class="nc">&nbsp;        this.nota = nota;</b>
+<b class="nc">&nbsp;        this.saptamanaPredare = saptamanaPredare;</b>
+<b class="nc">&nbsp;        this.feedback = feedback;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+<b class="nc">&nbsp;    public Pair&lt;String, String&gt; getID() { return idNota; }</b>
+&nbsp;
+&nbsp;    @Override
+<b class="nc">&nbsp;    public void setID(Pair&lt;String, String&gt; idNota) { this.idNota = idNota; }</b>
+&nbsp;
+<b class="nc">&nbsp;    public double getNota() { return nota; }</b>
+&nbsp;
+<b class="nc">&nbsp;    public void setNota(double nota) { this.nota = nota; }</b>
+&nbsp;
+<b class="nc">&nbsp;    public int getSaptamanaPredare() { return saptamanaPredare; }</b>
+&nbsp;
+<b class="nc">&nbsp;    public void setSaptamanaPredare(int saptamanaPredare) { this.saptamanaPredare = saptamanaPredare; }</b>
+&nbsp;
+<b class="nc">&nbsp;    public String getFeedback() { return feedback; }</b>
+&nbsp;
+<b class="nc">&nbsp;    public void setFeedback(String feedback) { this.feedback = feedback; }</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="nc">&nbsp;        return &quot;Nota{&quot; +</b>
+<b class="nc">&nbsp;                &quot;id_student = &quot; + idNota.getObject1() +</b>
+<b class="nc">&nbsp;                &quot;, id_tema = &quot; + idNota.getObject2() +</b>
+&nbsp;                &quot;, nota = &quot; + nota +
+&nbsp;                &quot;, saptamanaPredare = &quot; + saptamanaPredare +
+&nbsp;                &quot;, feedback = &#39;&quot; + feedback + &#39;\&#39;&#39; +
+&nbsp;                &#39;}&#39;;
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-04-03 18:26</div>
+</div>
+</body>
+</html>

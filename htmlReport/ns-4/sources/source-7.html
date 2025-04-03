@@ -1,0 +1,189 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > NotaFileRepository</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">repository</a>
+</div>
+
+<h1>Coverage Summary for Class: NotaFileRepository (repository)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">NotaFileRepository</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/20)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package repository;
+&nbsp;
+&nbsp;import domain.Nota;
+&nbsp;import domain.Pair;
+&nbsp;import validation.ValidationException;
+&nbsp;import validation.Validator;
+&nbsp;
+&nbsp;import java.io.*;
+&nbsp;import java.util.stream.Collectors;
+&nbsp;
+&nbsp;public class NotaFileRepository extends AbstractFileRepository&lt;Pair&lt;String, String&gt;, Nota&gt; {
+&nbsp;
+&nbsp;    public NotaFileRepository(Validator&lt;Nota&gt; validator, String filename) {
+<b class="nc">&nbsp;        super(validator, filename);</b>
+<b class="nc">&nbsp;        loadFromFile();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    protected void loadFromFile() {
+<b class="nc">&nbsp;        try (BufferedReader buffer = new BufferedReader(new FileReader(filename))) {</b>
+<b class="nc">&nbsp;            buffer.lines().collect(Collectors.toList()).forEach(line -&gt; {</b>
+<b class="nc">&nbsp;                String[] result = line.split(&quot;#&quot;);</b>
+<b class="nc">&nbsp;                Nota nota = new Nota(new Pair(result[0], result[1]), Double.parseDouble(result[2]),</b>
+<b class="nc">&nbsp;                        Integer.parseInt(result[3]), result[4]);</b>
+&nbsp;                try {
+<b class="nc">&nbsp;                    super.save(nota);</b>
+&nbsp;                } catch (ValidationException ve) {
+<b class="nc">&nbsp;                    ve.printStackTrace();</b>
+&nbsp;                }
+&nbsp;            });
+&nbsp;        } catch (IOException ioe) {
+<b class="nc">&nbsp;            ioe.printStackTrace();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    protected void writeToFile(Nota nota) {
+<b class="nc">&nbsp;        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename, true))) {</b>
+<b class="nc">&nbsp;            bw.write(nota.getID().getObject1() + &quot;#&quot; + nota.getID().getObject2() + &quot;#&quot; + nota.getNota() + &quot;#&quot;</b>
+<b class="nc">&nbsp;                    + nota.getSaptamanaPredare() + &quot;#&quot; + nota.getFeedback() + &quot;\n&quot;);</b>
+&nbsp;        } catch (IOException ioe) {
+<b class="nc">&nbsp;            ioe.printStackTrace();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    protected void writeToFileAll() {
+<b class="nc">&nbsp;        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename, false))) {</b>
+<b class="nc">&nbsp;            super.entities.values().forEach(nota -&gt; {</b>
+&nbsp;                try {
+<b class="nc">&nbsp;                    bw.write(nota.getID().getObject1() + &quot;#&quot; + nota.getID().getObject2() + &quot;#&quot; + nota.getNota()</b>
+<b class="nc">&nbsp;                            + &quot;#&quot; + nota.getSaptamanaPredare() + &quot;#&quot; + nota.getFeedback() + &quot;\n&quot;);</b>
+&nbsp;                } catch (IOException e) {
+<b class="nc">&nbsp;                    e.printStackTrace();</b>
+&nbsp;                }
+&nbsp;            });
+&nbsp;        } catch (IOException ioe) {
+<b class="nc">&nbsp;            ioe.printStackTrace();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;//    protected void createFile(Nota notaObj) {
+&nbsp;//        String idStudent = notaObj.getID().getObject1();
+&nbsp;//        StudentValidator sval = new StudentValidator();
+&nbsp;//        AssignmentValidator tval = new AssignmentValidator();
+&nbsp;//        StudentXMLRepository srepo = new StudentXMLRepository(sval, &quot;studenti.txt&quot;);
+&nbsp;//        AssignmentXMLRepository trepo = new AssignmentXMLRepository(tval, &quot;teme.txt&quot;);
+&nbsp;//
+&nbsp;//        Student student = srepo.findOne(idStudent);
+&nbsp;//        try (BufferedWriter bw = new BufferedWriter(new FileWriter(student.getNume() + &quot;.txt&quot;, false))) {
+&nbsp;//            super.findAll().forEach(nota -&gt; {
+&nbsp;//                if (nota.getID().getObject1().equals(idStudent)) {
+&nbsp;//                    try {
+&nbsp;//                        bw.write(&quot;Assignment: &quot; + nota.getID().getObject2() + &quot;\n&quot;);
+&nbsp;//                        bw.write(&quot;Nota: &quot; + nota.getNota() + &quot;\n&quot;);
+&nbsp;//                        bw.write(&quot;Predata in saptamana: &quot; + nota.getSaptamanaPredare() + &quot;\n&quot;);
+&nbsp;//                        bw.write(&quot;Deadline: &quot; + trepo.findOne(nota.getID().getObject2()).getDeadline() + &quot;\n&quot;);
+&nbsp;//                        bw.write(&quot;Feedback: &quot; + nota.getFeedback() + &quot;\n\n&quot;);
+&nbsp;//                    } catch (IOException e) {
+&nbsp;//                        e.printStackTrace();
+&nbsp;//                    }
+&nbsp;//                }
+&nbsp;//            });
+&nbsp;//        } catch (IOException ioe) {
+&nbsp;//            ioe.printStackTrace();
+&nbsp;//        }
+&nbsp;//    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-04-03 18:26</div>
+</div>
+</body>
+</html>

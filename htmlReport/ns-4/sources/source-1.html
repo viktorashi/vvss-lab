@@ -1,0 +1,182 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > AbstractCRUDRepository</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">repository</a>
+</div>
+
+<h1>Coverage Summary for Class: AbstractCRUDRepository (repository)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AbstractCRUDRepository</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (3/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (2/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    57.9%
+  </span>
+  <span class="absValue">
+    (11/19)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package repository;
+&nbsp;import domain.HasID;
+&nbsp;import validation.ValidationException;
+&nbsp;import validation.Validator;
+&nbsp;
+&nbsp;import java.util.HashMap;
+&nbsp;import java.util.Map;
+&nbsp;import java.util.Objects;
+&nbsp;
+&nbsp;public abstract class AbstractCRUDRepository&lt;ID, E extends HasID&lt;ID&gt;&gt; implements CRUDRepository&lt;ID, E&gt;{
+&nbsp;    Map&lt;ID, E&gt; entities;
+&nbsp;    Validator&lt;E&gt; validator;
+&nbsp;
+<b class="fc">&nbsp;    public AbstractCRUDRepository(Validator validator) {</b>
+<b class="fc">&nbsp;        entities = new HashMap&lt;ID, E&gt;();</b>
+<b class="fc">&nbsp;        this.validator = validator;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public E findOne(ID id) {
+<b class="fc">&nbsp;        if (id == null) {</b>
+<b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;ID-ul nu poate fi null! \n&quot;);</b>
+&nbsp;        }
+&nbsp;        else {
+<b class="fc">&nbsp;            return entities.get(id);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+<b class="nc">&nbsp;    public Iterable&lt;E&gt; findAll() { return entities.values(); }</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public E save(E entity) throws ValidationException {
+&nbsp;        try {
+<b class="fc">&nbsp;            validator.validate(entity);</b>
+<b class="fc">&nbsp;            E Previous =  entities.putIfAbsent(entity.getID(), entity);</b>
+<b class="fc">&nbsp;            return Objects.requireNonNullElse(Previous, entity);</b>
+&nbsp;        }
+&nbsp;        catch (ValidationException ve) {
+<b class="fc">&nbsp;            System.out.println(&quot;Entitatea nu este valida! \n&quot;);</b>
+<b class="fc">&nbsp;            return null;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public E delete(ID id) {
+<b class="nc">&nbsp;        if (id == null) {</b>
+<b class="nc">&nbsp;            throw new IllegalArgumentException(&quot;ID-ul nu poate fi nul! \n&quot;);</b>
+&nbsp;        }
+&nbsp;        else {
+<b class="nc">&nbsp;            return entities.remove(id);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public E update(E entity) {
+&nbsp;        try {
+<b class="nc">&nbsp;            validator.validate(entity);</b>
+<b class="nc">&nbsp;            return entities.replace(entity.getID(), entity);</b>
+&nbsp;        }
+&nbsp;        catch (ValidationException ve) {
+<b class="nc">&nbsp;            System.out.println(&quot;Entitatea nu este valida! \n&quot;);</b>
+<b class="nc">&nbsp;            return null;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-04-03 18:26</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,358 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > UI</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">console</a>
+</div>
+
+<h1>Coverage Summary for Class: UI (console)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UI</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/57)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/109)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package console;
+&nbsp;
+&nbsp;import domain.Nota;
+&nbsp;import domain.Student;
+&nbsp;import domain.Assignment;
+&nbsp;import service.Service;
+&nbsp;
+&nbsp;import java.util.Scanner;
+&nbsp;
+&nbsp;public class UI {
+&nbsp;    private Service service;
+&nbsp;
+<b class="nc">&nbsp;    public UI(Service service) {</b>
+<b class="nc">&nbsp;        this.service = service;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void printMenu() {
+<b class="nc">&nbsp;        System.out.println(&quot;11. Afiseaza toti studentii.&quot;);</b>
+<b class="nc">&nbsp;        System.out.println(&quot;12. Afiseaza toate temele.&quot;);</b>
+<b class="nc">&nbsp;        System.out.println(&quot;13. Afiseaza toate notele.&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;21. Adauga un nou student.&quot;);</b>
+<b class="nc">&nbsp;        System.out.println(&quot;22. Adauga o tema noua.&quot;);</b>
+<b class="nc">&nbsp;        System.out.println(&quot;23. Adauga o nota unui student pentru o tema.&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;31. Sterge un student existent.&quot;);</b>
+<b class="nc">&nbsp;        System.out.println(&quot;32. Sterge o tema existenta.&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;4. Actualizeaza datele unui student.&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;5. Prelungeste deadline-ul unei teme.&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;0. EXIT \n&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void uiPrintAllStudents() {
+<b class="nc">&nbsp;        for(Student student : service.findAllStudents()) {</b>
+<b class="nc">&nbsp;            System.out.println(student);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void uiPrintAllTeme() {
+<b class="nc">&nbsp;        for(Assignment assignment : service.findAllTeme()) {</b>
+<b class="nc">&nbsp;            System.out.println(assignment);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void uiPrintAllNote() {
+<b class="nc">&nbsp;        for(Nota note : service.findAllNote()) {</b>
+<b class="nc">&nbsp;            System.out.println(note);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void uiSaveStudent() {
+<b class="nc">&nbsp;        Scanner scanner = new Scanner(System.in);</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Introduceti ID-ul studentului: &quot;);</b>
+<b class="nc">&nbsp;        String id = scanner.nextLine();</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Introduceti numele studentului: &quot;);</b>
+<b class="nc">&nbsp;        String nume = scanner.nextLine();</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Introduceti grupa studentului: &quot;);</b>
+<b class="nc">&nbsp;        int grupa = scanner.nextInt();</b>
+&nbsp;
+<b class="nc">&nbsp;        if (service.saveStudent(id, nume, grupa) != 0) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Student adaugat cu succes! \n&quot;);</b>
+&nbsp;        }
+&nbsp;        else {
+<b class="nc">&nbsp;            System.out.println(&quot;Student existent sau invalid! \n&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void uiSaveTema() {
+<b class="nc">&nbsp;        Scanner scanner = new Scanner(System.in);</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Introduceti ID-ul temei: &quot;);</b>
+<b class="nc">&nbsp;        String id = scanner.nextLine();</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Introduceti o descriere a temei: &quot;);</b>
+<b class="nc">&nbsp;        String descriere = scanner.nextLine();</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Introduceti saptamana deadline a temei: &quot;);</b>
+<b class="nc">&nbsp;        int deadline = scanner.nextInt();</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Introduceti saptamana startline a temei: &quot;);</b>
+<b class="nc">&nbsp;        int startline = scanner.nextInt();</b>
+&nbsp;
+<b class="nc">&nbsp;        if (service.saveTema(id, descriere, deadline, startline) != 0) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Assignment adaugata cu succes! \n&quot;);</b>
+&nbsp;        }
+&nbsp;        else {
+<b class="nc">&nbsp;            System.out.println(&quot;Assignment existenta sau invalida! \n&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void uiSaveNota() {
+<b class="nc">&nbsp;        Scanner scanner = new Scanner(System.in);</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Introduceti ID-ul studentului: &quot;);</b>
+<b class="nc">&nbsp;        String idStudent = scanner.nextLine();</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Introduceti ID-ul temei: &quot;);</b>
+<b class="nc">&nbsp;        String idTema = scanner.nextLine();</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Introduceti valoarea notei: &quot;);</b>
+<b class="nc">&nbsp;        String linie = scanner.nextLine();</b>
+<b class="nc">&nbsp;        double valNota = Double.parseDouble(linie);</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Introduceti saptamana de predare a temei: &quot;);</b>
+<b class="nc">&nbsp;        String linie2 = scanner.nextLine();</b>
+<b class="nc">&nbsp;        int predata = Integer.parseInt(linie2);</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Dati un feedback temei: &quot;);</b>
+<b class="nc">&nbsp;        String feedback = scanner.nextLine();</b>
+&nbsp;
+<b class="nc">&nbsp;        int result = service.saveNota(idStudent, idTema, valNota, predata, feedback);</b>
+<b class="nc">&nbsp;        if (result == 1) {</b>
+<b class="nc">&nbsp;            service.createStudentFile(idStudent, idTema);</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Nota adaugata cu succes! \n&quot;);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        else if (result == 0) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Nota existenta! \n&quot;);</b>
+&nbsp;        }
+&nbsp;        else {
+<b class="nc">&nbsp;            System.out.println(&quot;Student sau tema inexistenta! \n&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void uiDeleteStudent() {
+<b class="nc">&nbsp;        Scanner scanner = new Scanner(System.in);</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Introduceti ID-ul studentului: &quot;);</b>
+<b class="nc">&nbsp;        String id = scanner.nextLine();</b>
+&nbsp;
+<b class="nc">&nbsp;        if (service.deleteStudent(id) != 0) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Student sters cu succes! \n&quot;);</b>
+&nbsp;        }
+&nbsp;        else {
+<b class="nc">&nbsp;            System.out.println(&quot;Studentul nu exista! \n&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void uiDeleteTema() {
+<b class="nc">&nbsp;        Scanner scanner = new Scanner(System.in);</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Introduceti ID-ul temei: &quot;);</b>
+<b class="nc">&nbsp;        String id = scanner.nextLine();</b>
+&nbsp;
+<b class="nc">&nbsp;        if (service.deleteTema(id) != 0) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Assignment stearsa cu succes! \n&quot;);</b>
+&nbsp;        }
+&nbsp;        else {
+<b class="nc">&nbsp;            System.out.println(&quot;Assignment nu exista! \n&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void uiUpdateStudent() {
+<b class="nc">&nbsp;        Scanner scanner = new Scanner(System.in);</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Introduceti ID-ul studentului: &quot;);</b>
+<b class="nc">&nbsp;        String id = scanner.nextLine();</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Introduceti noul nume al studentului: &quot;);</b>
+<b class="nc">&nbsp;        String numeNou = scanner.nextLine();</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Introduceti noua grupa a studentului: &quot;);</b>
+<b class="nc">&nbsp;        int grupaNoua = scanner.nextInt();</b>
+&nbsp;
+<b class="nc">&nbsp;        if (service.updateStudent(id, numeNou, grupaNoua) != 0) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Student actualizat cu succes! \n&quot;);</b>
+&nbsp;        }
+&nbsp;        else {
+<b class="nc">&nbsp;            System.out.println(&quot;Studentul nu exista! \n&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void uiExtendDeadline() {
+<b class="nc">&nbsp;        Scanner scanner = new Scanner(System.in);</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Introduceti ID-ul temei: &quot;);</b>
+<b class="nc">&nbsp;        String id = scanner.nextLine();</b>
+&nbsp;
+<b class="nc">&nbsp;        System.out.println(&quot;Introduceti numarul de saptamani adaugate la deadline: &quot;);</b>
+<b class="nc">&nbsp;        int nrWeeks = scanner.nextInt();</b>
+&nbsp;
+<b class="nc">&nbsp;        if (service.extendDeadline(id, nrWeeks) != 0) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Deadline extins cu succes! \n&quot;);</b>
+&nbsp;        }
+&nbsp;        else {
+<b class="nc">&nbsp;            System.out.println(&quot;Assignment nu exista! \n&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    public void run() {
+<b class="nc">&nbsp;        Scanner scanner = new Scanner(System.in);</b>
+<b class="nc">&nbsp;        int cmd = -1;</b>
+&nbsp;
+<b class="nc">&nbsp;        printMenu();</b>
+&nbsp;
+<b class="nc">&nbsp;        while(cmd != 0) {</b>
+<b class="nc">&nbsp;            System.out.println(&quot;Introduceti comanda: &quot;);</b>
+<b class="nc">&nbsp;            cmd = scanner.nextInt();</b>
+&nbsp;
+<b class="nc">&nbsp;            switch(cmd) {</b>
+&nbsp;                case 11:
+<b class="nc">&nbsp;                    uiPrintAllStudents();</b>
+&nbsp;                    break;
+&nbsp;                case 12:
+<b class="nc">&nbsp;                    uiPrintAllTeme();</b>
+&nbsp;                    break;
+&nbsp;                case 13:
+<b class="nc">&nbsp;                    uiPrintAllNote();</b>
+&nbsp;                    break;
+&nbsp;                case 21:
+<b class="nc">&nbsp;                    uiSaveStudent();</b>
+&nbsp;                    break;
+&nbsp;                case 22:
+<b class="nc">&nbsp;                    uiSaveTema();</b>
+&nbsp;                    break;
+&nbsp;                case 23:
+<b class="nc">&nbsp;                    uiSaveNota();</b>
+&nbsp;                    break;
+&nbsp;                case 31:
+<b class="nc">&nbsp;                    uiDeleteStudent();</b>
+&nbsp;                    break;
+&nbsp;                case 32:
+<b class="nc">&nbsp;                    uiDeleteTema();</b>
+&nbsp;                    break;
+&nbsp;                case 4:
+<b class="nc">&nbsp;                    uiUpdateStudent();</b>
+&nbsp;                    break;
+&nbsp;                case 5:
+<b class="nc">&nbsp;                    uiExtendDeadline();</b>
+&nbsp;                    break;
+&nbsp;                case 0:
+<b class="nc">&nbsp;                    cmd = 0;</b>
+&nbsp;                    break;
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-04-03 18:26</div>
+</div>
+</body>
+</html>
