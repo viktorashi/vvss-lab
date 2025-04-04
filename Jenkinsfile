@@ -8,8 +8,8 @@ pipeline {
         }
         stage('Clone the repository') {
             steps {
-                git url: 'http://gitea:3000/admin/project.git', credentialsId: 'gitea-creds'
-                sh 'tree'
+                git url: 'http://gitea:3000/admin/project.git'
+                sh 'tree .'
             }
         }
         stage('Build') {
