@@ -6,12 +6,12 @@ pipeline {
                 sh 'rm -rf *'
             }
         }
-        stage('Clone the repository') {
-            steps {
-                git url: 'http://gitea:3000/admin/project.git'
-                sh 'tree .'
-            }
-        }
+//         stage('Clone the repository') {
+//             steps {
+//                 git url: 'http://gitea:3000/admin/project.git'
+//                 sh 'tree .'
+//             }
+//         }
         stage('Build') {
             steps {
                 dir('') {
