@@ -8,7 +8,7 @@ import validation.StudentValidator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class StudentsTest {
+class AddStudentsTest {
     private StudentRepository studentRepo;
 
     @BeforeEach

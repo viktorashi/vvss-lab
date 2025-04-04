@@ -1,18 +1,12 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import domain.Assignment;
-import org.junit.jupiter.api.TestTemplate;
-import repository.AssignmentFileRepository;
 import repository.AssignmentRepository;
-import repository.AssignmentXMLRepository;
-import repository.StudentRepository;
-import service.Service;
 import validation.AssignmentValidator;
-import validation.StudentValidator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AssignmentTest {
+public class AddAssignmentTest {
     private AssignmentRepository assignmentRepo;
 
     @BeforeEach
