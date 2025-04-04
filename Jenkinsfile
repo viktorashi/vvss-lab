@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Clone the repository') {
             steps {
-                git branch: 'main', url: 'http://localhost:3000/admin/project.git'
+                git branch: 'any', url: 'http://localhost:3000/admin/project.git'
                 sh 'tree'
             }
         }
@@ -22,7 +22,7 @@ pipeline {
         stage('Run a Test') {
             steps {
                 dir('') {
-                    sh 'mvn -Dtest=StudentsTest verify'
+                    sh 'mvn -Dtest=AddAssignmentTest verify'
                 }
             }
         }
