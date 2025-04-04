@@ -15,7 +15,7 @@ pipeline {
         stage('Build') {
             steps {
                 dir('') {
-                    sh 'mvn clean install -Dtest=AddStudentsTest verify'
+                    sh 'mvn clean install -Dtest=AddAssignmentTest verify'
                 }
             }
         }
