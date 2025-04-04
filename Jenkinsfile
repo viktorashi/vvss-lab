@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Clone the repository') {
             steps {
-                git branch: 'any', url: 'http://gitea:3000/admin/project.git'
+                git url: 'http://gitea:3000/admin/project.git', credentialsId: 'gitea-creds'
                 sh 'tree'
             }
         }
