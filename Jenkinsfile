@@ -15,17 +15,11 @@ pipeline {
         stage('Build') {
             steps {
                 dir('') {
-                    sh 'mvn clean install -DskipTests'
+                    sh 'mvn clean install -Dtest=AddAssignmentTest verify'
                 }
             }
         }
-        stage('Run a Test') {
-            steps {
-                dir('') {
-                    sh 'mvn -Dtest=AddAssignmentTest verify'
-                }
-            }
-        }
+        
         stage('Publish Allure Report') {
             steps {
 //                 dir('project') {
