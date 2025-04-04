@@ -8,20 +8,20 @@ pipeline {
         }
         stage('Clone the repository') {
             steps {
-                sh 'git clone http://gitea:3000/admin/project.git'
+                git branch: 'main', url: 'http://gitea:3000/admin/project.git'
                 sh 'tree .'
             }
         }
         stage('Build') {
             steps {
-                dir('project') {
+                dir('') {
                     sh 'mvn clean install -DskipTests'
                 }
             }
         }
         stage('Run a Test') {
             steps {
-                dir('project') {
+                dir('') {
                     sh 'mvn -Dtest=AddAssignmentTest verify'
                 }
             }
@@ -31,7 +31,7 @@ pipeline {
 //                 dir('project') {
 //                     sh 'mvn allure:report'
 //                 }
-                allure includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'target/allure-results']]
+                allure includeProperties: false, jdk: '',  results: [[path: 'target/allure-results']]
             }
         }
     }
