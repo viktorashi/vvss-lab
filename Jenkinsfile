@@ -28,7 +28,10 @@ pipeline {
         }
         stage('Publish Allure Report') {
             steps {
-                allure includeProperties: false, jdk: '', results: [[path: 'project/target/allure-results']]
+//                 dir('project') {
+//                     sh 'mvn allure:report'
+//                 }
+                allure includeProperties: false, jdk: '', reportBuildPolicy: 'ALWAYS', results: [[path: 'target/allure-results']]
             }
         }
     }
