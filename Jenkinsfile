@@ -12,11 +12,9 @@ pipeline {
                 sh 'tree .'
             }
         }
-        stage('Build') {
+        stage('Build and test') {
             steps {
-                dir('') {
                     sh 'mvn clean install -Dtest=AddAssignmentTest verify'
-                }
             }
         }
         
